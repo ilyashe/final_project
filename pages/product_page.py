@@ -16,3 +16,11 @@ class ProductPage(BasePage):
         message_basket_price = self.browser.find_element(*ProductPageLocators.MESSAGE_BASKET_PRICE).text
         product_price = self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE).text
         assert message_basket_price == product_price, "Basket price is different"
+
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.MESSAGE_PRODUCT_NAME), \
+            "Success message is presented, but should not be"
+
+    def success_message_should_disappear(self):
+        assert self.is_disappeared(*ProductPageLocators.MESSAGE_PRODUCT_NAME), \
+            "Success message is not disappeared"
